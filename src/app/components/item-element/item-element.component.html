@@ -1,0 +1,16 @@
+<figure class="highlight">
+    <div class="col-xs-6"> 
+      <ng-container *ngFor="let item of numberService.getNumbers()">          
+          <p  *ngIf="item.text >= 0; else blue" class="badge badge-pill badge-danger mx-2">{{item.text}}
+              <span (click) = "removeNumber(item.id)" class="fas fa-times-circle pl-2" href=""></span></p>  
+              <ng-template #blue>      
+                  <p class="badge badge-pill badge-primary mx-2">{{item.text}}
+                      <span (click) = "removeNumber(item.id)" class="fas fa-times-circle pl-2" href=""></span></p>
+                    </ng-template>   
+      </ng-container>
+           
+      
+                
+    </div>        
+</figure>            
+<ngbd-modal-basic></ngbd-modal-basic>

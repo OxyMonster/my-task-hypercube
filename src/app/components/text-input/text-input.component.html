@@ -1,0 +1,14 @@
+<form>
+  <div class="form-group">
+    <h2 class="form-title mt-5">Add cash Test assigment</h2>
+    <label for="exampleFormControlTextarea1">Type tags here using comma, semicolon and line break as delimiters</label>
+    <textarea 
+    [(ngModel)]="newNumber"
+    value = {{newNumber}}
+    name="name"    
+    class="form-control" id="exampleFormControlTextarea1"  rows="3" ></textarea>
+  </div>
+  <button 
+  type="button" class="btn btn-success btn-lg"   
+  (click)="addNumber(newNumber)">Add tags</button>
+</form>  

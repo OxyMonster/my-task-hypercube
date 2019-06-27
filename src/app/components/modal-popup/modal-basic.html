@@ -1,0 +1,22 @@
+<ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>   
+        <div class="col-xs-6">  
+          <ng-container class="modal-body" *ngFor="let item of numberService.getNumbers()">
+                  <p *ngIf="item.text >= 0" class="badge badge-pill badge-danger m-2">{{item.text}} 
+                    <span (click) = "removeNumberFromLocalStorage(item.id)" class="fas fa-edit"></span> </p>
+                  <p *ngIf="item.text < 0"  class="badge badge-pill badge-primary m-2">{{item.text}}
+                    <input class="editInput" type="text"></p> 
+                      
+          </ng-container>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="saveNumberToLocalStoradge()">Save</button>
+        </div>    
+      </ng-template>
+      
+      <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Edit tags</button>
