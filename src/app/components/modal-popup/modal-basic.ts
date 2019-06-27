@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import { NumberService } from '../../services/number.service';
 
+
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import { createInput } from '@angular/compiler/src/core';
 
 
 @Component({
@@ -14,7 +14,10 @@ export class NgbdModalBasic {
   closeResult: string;
   
   
-  constructor(private modalService: NgbModal, private  numberService: NumberService) {}
+  constructor(private modalService: NgbModal, private  numberService: NumberService) {
+    this.newNumber = null;  
+
+  }
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -35,14 +38,16 @@ export class NgbdModalBasic {
       return  `with: ${reason}`;
     }
   }
-
- private saveNumberToLocalStoradge() {
+private newNumber: number;
+ private saveNumberToLocalStoradge(i) {
   // this.numberService.saveNumberToLocalStorage(); 
+   let numbers = this.numberService.addNumber(i);
+   this.newNumber = undefined;
   }       
             
   private removeNumberFromLocalStorage(id) {
-   this.numberService.removeNumber(id);
-   
-            
+    this.numberService.removeNumber(id);
   }
+
+  
 }

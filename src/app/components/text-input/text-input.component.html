@@ -1,7 +1,7 @@
 <form>
   <div class="form-group">
     <h2 class="form-title mt-5">Add cash Test assigment</h2>
-    <label for="exampleFormControlTextarea1">Type tags here using comma, semicolon and line break as delimiters</label>
+    <label for="exampleFormControlTextarea1">Type tags here using comma, semicolon and line break as delimiters or you can type numbers one by one</label>
     <textarea 
     [(ngModel)]="newNumber"
     value = {{newNumber}}
@@ -10,5 +10,5 @@
   </div>
   <button 
   type="button" class="btn btn-success btn-lg"   
-  (click)="addNumber(newNumber)">Add tags</button>
+  (click)="addNumber(newNumber)">Add tags</button>           
 </form>  

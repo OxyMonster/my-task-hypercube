@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NumberService } from '../../services/number.service';
-import { ItemElementComponent } from "../item-element/item-element.component";
+import { NumberItem } from '../../classes/number-item';
 
 @Component({
   selector: 'app-text-input',
@@ -8,25 +8,28 @@ import { ItemElementComponent } from "../item-element/item-element.component";
   styleUrls: ['./text-input.component.css']
 })
 export class TextInputComponent implements OnInit {
- private newNumber: number;
+ private newNumber;
 
      
   constructor(private numberService: NumberService) {
-    this.newNumber = null;
-   }
+    this.newNumber = null; 
+  }
 
   ngOnInit() {
   }
 
   private addNumber(): void {
-    if(this.newNumber >= 0 || this.newNumber <= 0) {
-      this.numberService.addNumber(this.newNumber);
-      this.newNumber = undefined;     
+    let textArea = document.getElementById("exampleFormControlTextarea1").value; 
+    if(textArea.length > 1){    
+      this.numberService.splitedNumbers(this.newNumber);    
+    }else if (this.newNumber >= 0 || this.newNumber <= 0) {
+      this.numberService.addNumber(this.newNumber);   
     }
-                    
+    this.newNumber = undefined; 
+             
   }
   
-
+  
   
   
 

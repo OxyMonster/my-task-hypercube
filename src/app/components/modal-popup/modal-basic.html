@@ -4,18 +4,29 @@
           <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
             <span aria-hidden="true">&times;</span>
           </button>
+            
         </div>   
-        <div class="col-xs-6">  
+        <div class="col-xs-6">
+            <form>
+                <div class="form-group">
+                  <label class="m-2" for="exampleFormControlTextarea2"></label>
+                  <textarea 
+                  [(ngModel)]="newNumber"
+                  value = {{newNumber}}
+                  name="name"    
+                  class="form-control m-2" id="exampleFormControlTextarea2"  rows="3" ></textarea>
+                </div>
+              </form> 
+              <hr> 
           <ng-container class="modal-body" *ngFor="let item of numberService.getNumbers()">
                   <p *ngIf="item.text >= 0" class="badge badge-pill badge-danger m-2">{{item.text}} 
-                    <span (click) = "removeNumberFromLocalStorage(item.id)" class="fas fa-edit"></span> </p>
+                    <span (click) = "removeNumberFromLocalStorage(item.id)" class="fas fa-times-circle"></span></p>
                   <p *ngIf="item.text < 0"  class="badge badge-pill badge-primary m-2">{{item.text}}
-                    <input class="editInput" type="text"></p> 
-                      
+                    <span (click) = "removeNumberFromLocalStorage(item.id)" class="fas fa-times-circle"></span></p>                     
           </ng-container>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="saveNumberToLocalStoradge()">Save</button>
+          <button type="button" class="btn btn-outline-dark" (click)="saveNumberToLocalStoradge(newNumber)">Save</button>
         </div>    
       </ng-template>
       

@@ -16,7 +16,7 @@ export class NumberService {
       this.nextId = 0;
     } else {
       let maxId = numbers[numbers.length - 1].id;
-      this.nextId = maxId + 1;
+      this.nextId = maxId + 1; 
     }
   }  
   
@@ -27,7 +27,7 @@ export class NumberService {
     
     // Add number to local Storage
    this.setLocalStorageNumbers(numbers); 
-   this.nextId ++; 
+   this.nextId ++;   
   }
 
   public removeNumber(id: number): void {
@@ -41,13 +41,24 @@ export class NumberService {
     return localStoradgeItem == null ? [] : localStoradgeItem.numbers;
   }
 
-  private setLocalStorageNumbers(number: NumberItem[]): void {
+  public setLocalStorageNumbers(number: NumberItem[]): void {
     localStorage.setItem("numbers", JSON.stringify({numbers: number}));
   }
+  
+  splitedNumbers(item) {
+    let number = item;    
+    let splt = /[,;\s]+/;    
+    let words = number.split(splt);
+    words.forEach(element => {
+      if(element >= 0 || element <= 0 ) {
+        let number = new NumberItem(this.nextId, element);
+        let numbers = this.getNumbers();
+        numbers.push(number);
+        this.setLocalStorageNumbers(numbers);
+        this.nextId ++ - 1;       
+      }
+      
+    }); 
 
-  
-  
-
-  
-  
+  }
 }

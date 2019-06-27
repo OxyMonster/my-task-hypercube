@@ -1,4 +1,4 @@
-.fas.fa-edit {
+.fas.fa-times-circle {
     font-size: 15px;
     color: white;
     transition: all .2s ease-in-out; 
@@ -6,7 +6,7 @@
     padding-left: 5px;
 }
 
-.fas.fa-edit:hover {
+.fas.fa-times-circle:hover {
     text-decoration: none;
     transform: scale(1.1);     
 }
@@ -19,6 +19,6 @@
     box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
 }
 
-.editInput {
-    width: 22px;
+.form-control {
+    width: 470px; 
 }
