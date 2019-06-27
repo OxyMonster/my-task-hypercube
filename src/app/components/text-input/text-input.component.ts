@@ -22,11 +22,10 @@ export class TextInputComponent implements OnInit {
     let textArea = (<HTMLInputElement>document.getElementById("exampleFormControlTextarea1")).value; 
     if(textArea.length > 1){    
       this.numberService.splitedNumbers(this.newNumber);    
-    }else if (this.newNumber >= 0 || this.newNumber <= 0) {
+    }else if (this.newNumber >= 0 || this.newNumber < 0) {  
       this.numberService.addNumber(this.newNumber);   
     }
-    this.newNumber = undefined; 
-             
+    this.newNumber = undefined;          
   }
   
   

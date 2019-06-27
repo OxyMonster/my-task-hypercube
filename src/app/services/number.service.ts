@@ -25,7 +25,7 @@ export class NumberService {
     let numbers = this.getNumbers();   
     numbers.push(number);
     
-    // Add number to local Storage
+    // Save numbers to local Storage
    this.setLocalStorageNumbers(numbers); 
    this.nextId ++;   
   }
@@ -50,14 +50,13 @@ export class NumberService {
     let splt = /[,;\s]+/;    
     let words = number.split(splt);
     words.forEach(element => {
-      if(element >= 0 || element <= 0 ) {
+      if(element >= 0 || element < 0 ) {   
         let number = new NumberItem(this.nextId, element);
         let numbers = this.getNumbers();
         numbers.push(number);
         this.setLocalStorageNumbers(numbers);
         this.nextId ++ - 1;       
-      }
-      
+      } 
     }); 
 
   }
