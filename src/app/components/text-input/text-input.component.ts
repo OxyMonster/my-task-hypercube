@@ -19,7 +19,7 @@ export class TextInputComponent implements OnInit {
   }
 
   private addNumber(): void {
-    let textArea = document.getElementById("exampleFormControlTextarea1").value; 
+    let textArea = (<HTMLInputElement>document.getElementById("exampleFormControlTextarea1")).value; 
     if(textArea.length > 1){    
       this.numberService.splitedNumbers(this.newNumber);    
     }else if (this.newNumber >= 0 || this.newNumber <= 0) {
