@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import { NumberService } from '../../services/number.service';
 
-
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -12,14 +11,17 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class NgbdModalBasic {
   closeResult: string;
+  private tags: string; 
+  numberList = this.numberService.getNumbers();
   
   
   constructor(private modalService: NgbModal, private  numberService: NumberService) {
-    this.newNumber = null;  
+    // this.tags = null;     
 
   }
 
   open(content) {
+    this.initTextArea(); 
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
@@ -27,7 +29,6 @@ export class NgbdModalBasic {
     });
   }
 
-  numberList = this.numberService.getNumbers();
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -38,16 +39,26 @@ export class NgbdModalBasic {
       return  `with: ${reason}`;
     }
   }
-private newNumber: number;
  private saveNumberToLocalStoradge(i) {
   // this.numberService.saveNumberToLocalStorage(); 
    let numbers = this.numberService.addNumber(i);
-   this.newNumber = undefined;
+   this.tags = undefined;
   }       
             
   private removeNumberFromLocalStorage(id) {
     this.numberService.removeNumber(id);
   }
+
+  private initTextArea() {
+    let tags = "";
+    this.numberService.getNumbers().forEach(x => (tags +=x.text + ","));
+    this.tags = tags; 
+  }   
+
+  private saveAndAddNumbers() {
+    this.numberService.saveAndAddNumbers(this.tags);   
+         
+  } 
 
   
 }

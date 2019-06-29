@@ -9,14 +9,10 @@ import { NumberService } from '../../services/number.service';
   styleUrls: ['./item-element.component.css']
 })
 export class ItemElementComponent implements OnInit {
-
-  private number: NumberItem;
-  public numberList = [];
-
+  
   constructor(private  numberService: NumberService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   private removeNumber(element): void {  
   this.numberService.removeNumber(element);         

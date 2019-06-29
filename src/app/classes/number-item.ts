@@ -1,8 +1,8 @@
 export class NumberItem {
     id: number;
-    text: number;  
+    text: string;   
 
-    constructor(id: number, text: number) {
+    constructor(id: number, text: string) {
        this.id = id;  
        this.text = text;   
     }  

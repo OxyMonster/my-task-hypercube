@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { NumberItem } from '../classes/number-item';
-  
+import { NumberItem } from '../classes/number-item';  
 
-@Injectable({
+@Injectable({  
   providedIn: 'root'
 })
 export class NumberService {
@@ -10,7 +9,7 @@ export class NumberService {
   private nextId: number;
 
   constructor() { 
-    let numbers = this.getNumbers();
+    let numbers = this.getNumbers();        
 
     if(numbers.length == 0) {
       this.nextId = 0;
@@ -20,7 +19,7 @@ export class NumberService {
     }
   }  
   
-  public addNumber(data: number): void {
+   addNumber(data: string): void {
     let number = new NumberItem(this.nextId, data);
     let numbers = this.getNumbers();   
     numbers.push(number);
@@ -30,34 +29,40 @@ export class NumberService {
    this.nextId ++;   
   }
 
-  public removeNumber(id: number): void {
+   removeNumber(id: number): void {
     let numbers = this.getNumbers();
     numbers = numbers.filter(number => number.id != id);       
     this.setLocalStorageNumbers(numbers);
   }  
 
-  public getNumbers(): NumberItem[] {
+   getNumbers(): NumberItem[] {
     let localStoradgeItem = JSON.parse(localStorage.getItem("numbers"));
     return localStoradgeItem == null ? [] : localStoradgeItem.numbers;
   }
-
-  public setLocalStorageNumbers(number: NumberItem[]): void {
-    localStorage.setItem("numbers", JSON.stringify({numbers: number}));
-  }
   
-  splitedNumbers(item) {
+  splitedNumbers(item: string) {
     let number = item;    
     let splt = /[,;\s]+/;    
     let words = number.split(splt);
-    words.forEach(element => {
-      if(element >= 0 || element < 0 ) {   
+    words.forEach(element => { 
+      if(+element >= 0 || +element < 0 ) {   
         let number = new NumberItem(this.nextId, element);
         let numbers = this.getNumbers();
         numbers.push(number);
         this.setLocalStorageNumbers(numbers);
-        this.nextId ++ - 1;       
+        this.nextId ++ - 1;        
       } 
-    }); 
+    });
+  }
 
+  saveAndAddNumbers(tagsText: string) { 
+    let numbers = this.getNumbers();
+    numbers.length = 0;
+    this.setLocalStorageNumbers(numbers);
+    this.splitedNumbers(tagsText);    
+  }
+
+   setLocalStorageNumbers(number: NumberItem[]): void {
+    localStorage.setItem("numbers", JSON.stringify({numbers: number}));
   }
 }
