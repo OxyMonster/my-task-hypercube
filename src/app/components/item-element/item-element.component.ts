@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NumberItem  } from '../../classes/number-item';
+import { Component, OnInit } from '@angular/core';
 import { NumberService } from '../../services/number.service';
 
 
