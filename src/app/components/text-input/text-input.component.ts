@@ -22,10 +22,4 @@ export class TextInputComponent implements OnInit {
     }
     this.newNumber = undefined;          
   }
-  
-  
-  
-  
-
-
 }

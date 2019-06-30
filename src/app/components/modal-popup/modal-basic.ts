@@ -15,10 +15,7 @@ export class NgbdModalBasic {
   numberList = this.numberService.getNumbers();
   
   
-  constructor(private modalService: NgbModal, private  numberService: NumberService) {
-    // this.tags = null;     
-
-  }
+  constructor(private modalService: NgbModal, private  numberService: NumberService) { }
 
   open(content) {
     this.initTextArea(); 
@@ -40,7 +37,6 @@ export class NgbdModalBasic {
     }
   }
  private saveNumberToLocalStoradge(i) {
-  // this.numberService.saveNumberToLocalStorage(); 
    let numbers = this.numberService.addNumber(i);
    this.tags = undefined;
   }       
